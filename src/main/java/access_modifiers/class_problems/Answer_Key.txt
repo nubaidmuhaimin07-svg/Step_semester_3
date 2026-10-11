@@ -1,0 +1,39 @@
+STEP SEM-3 OOP ANSWER KEY
+
+QUIZ ANSWERS
+1. C — Polymorphism
+2. C — Encapsulation
+3. C — Author 1 --- 1..* Book (each book has one author; an author writes one or more books)
+4. D — Composition
+5. D — Generalization
+6. C — Realization
+7. B — Association
+8. C — State diagram
+9. B — Abstraction
+10. C — Sequence diagram
+
+CONCEPT QUESTIONS
+
+1. Encapsulation in User
+The email field should be private and changed only through changeEmail(). That method validates the email's format and uniqueness before assigning it. If the field were public, other code could set an invalid or duplicate email and leave the User object in an inconsistent state. Controlled methods protect the object's valid state.
+
+2. Inheritance vs composition for reporting capabilities
+Inheritance is useful when one report type truly is a specialized kind of another type and shares stable behavior. Composition is better for optional capabilities such as exporting and charting: a report can contain or receive a DataExport or DataVisualization component only when needed. A single inheritance hierarchy can create many awkward subclasses and makes combinations of features difficult to extend.
+
+3. Abstraction, overriding, and runtime polymorphism
+Create a Notification interface with send(). EmailNotification, SMSNotification, and PushNotification each implement send() differently. NotificationService accepts a Notification reference and calls send(); Java chooses the implementation based on the actual object at runtime. Adding InAppNotification requires implementing the interface, while the service's common logic can stay unchanged.
+
+4. Composition vs aggregation
+Organization–Department is composition because departments are described as lifecycle-dependent parts of the organization: when the organization ceases to exist, its departments are dissolved. Department–Employee is aggregation because employees can survive a department's dissolution and be reassigned. The employee's lifecycle is independent of a particular department.
+
+5. Student–Course multiplicity and duplicate enrollment
+Student and Course have a many-to-many relationship: a student can take zero or many courses, and a course can have zero or many students. Multiplicity describes how many objects may participate; it does not by itself prevent the same student-course pair from being recorded twice. Enforce uniqueness using an Enrollment association class/table with a unique constraint on (studentId, courseId), or check for an existing enrollment before inserting one.
+
+CODING SOLUTION NOTES
+1. Vehicle rental: Vehicle is abstract; Sedan, SUV, and Truck supply their own pricing. RentalService checks availability and tracks active rentals.
+2. Leave workflow: Employee subclasses implement duration rules. LeaveRequest owns its status and allows review only while Pending.
+3. Online exam: Question subclasses implement their own checking logic. Attempt prevents answer changes after submission and computes the score.
+4. Hotel booking: Room subclasses calculate different prices. HotelBookingService prevents overlapping active reservations. Reservation enforces its cancellation deadline.
+5. Shopping payment: PaymentMethod implementations process payments polymorphically. An empty order cannot be paid, and an order is marked Paid only when payment succeeds.
+
+NOTE: The coding questions provide sample behavior rather than exact rate values, cancellation dates, or all validation rules. The code uses example rates and simple demonstration data where the prompt leaves those details unspecified.
